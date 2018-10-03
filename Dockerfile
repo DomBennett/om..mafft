@@ -3,7 +3,8 @@ FROM ubuntu:18.04
 RUN apt-get update && apt-get install -y \
     wget make gcc g++
 
-RUN wget https://mafft.cbrc.jp/alignment/software/mafft-7.407-with-extensions-src.tgz && \
+# Unsure if mafft website maintains past versions, using uploaded copy
+RUN wget https://github.com/DomBennett/om..mafft..7.407/raw/master/mafft-7.407-with-extensions-src.tgz && \
     gunzip -cd mafft-7.407-with-extensions-src.tgz | tar xfv - && \
     rm mafft-7.407-with-extensions-src.tgz && \
     mv mafft-7.407-with-extensions mafft
