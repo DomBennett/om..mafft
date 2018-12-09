@@ -18,4 +18,4 @@ r_github_packages:
   - antonellilab/outsider
   
 script:
-  - Rscript -e 'outsider::module_test(repo = "DomBennett/om..mafft")'
+  - Rscript -e 'outsider::.module_test(repo = "DomBennett/om..mafft")'
