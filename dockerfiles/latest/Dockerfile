@@ -1,8 +1,9 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y \
     wget make gcc g++
 
+# TODO: switch to latest
 # Unsure if mafft website maintains past versions, using uploaded copy
 RUN wget https://github.com/DomBennett/om..mafft..7.407/raw/master/mafft-7.407-with-extensions-src.tgz && \
     gunzip -cd mafft-7.407-with-extensions-src.tgz | tar xfv - && \
