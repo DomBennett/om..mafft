@@ -21,7 +21,7 @@ mafft <- function(...) {
   if ('--help' %in% arglist) {
     # mafft raises an error for --help
     otsdr$ignore_errors <- TRUE
-    outsider::.run(otsdr)
+    res <- outsider::.run(otsdr)
   } else {
     res <- outsider::.run(otsdr)
   }
