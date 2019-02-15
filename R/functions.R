@@ -1,3 +1,8 @@
+flpth_check <- function(flpth) {
+  if (!file.exists(flpth)) {
+    stop('[', flpth, '] does not exist')
+  }
+}
 
 #' @name mafft
 #' @title mafft
@@ -9,7 +14,9 @@ mafft <- function(...) {
   arglist <- outsider::.arglist_get(...)
   if ('>' %in% arglist) {
     input_file <- arglist[which(arglist == '>') - 1]
+    flpth_check(input_file)
     output_file <- arglist[which(arglist == '>') + 1]
+    flpth_check(outsider::.dirpath_get(output_file))
   } else {
     input_file <- output_file <- NULL
   }
