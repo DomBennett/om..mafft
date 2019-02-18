@@ -1,4 +1,4 @@
-flpth_check <- function(flpth) {
+.flpth_check <- function(flpth) {
   if (!file.exists(flpth)) {
     stop('[', flpth, '] does not exist')
   }
@@ -16,11 +16,11 @@ mafft <- function(...) {
     arglist_parsed <- arglist
     input_i <- which(arglist == '>') - 1
     input_file <- arglist[input_i]
-    flpth_check(input_file)
+    .flpth_check(input_file)
     arglist_parsed[input_i] <- basename(input_file)
     output_i <- which(arglist == '>') + 1
     output_file <- arglist[output_i]
-    flpth_check(outsider::.dirpath_get(output_file))
+    .flpth_check(outsider::.dirpath_get(output_file))
     arglist_parsed[output_i] <- basename(output_file)
   } else {
     input_file <- output_file <- NULL
