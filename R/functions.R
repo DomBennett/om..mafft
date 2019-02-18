@@ -23,6 +23,7 @@ mafft <- function(...) {
     .flpth_check(outsider::.dirpath_get(output_file))
     arglist_parsed[output_i] <- basename(output_file)
   } else {
+    arglist_parsed <- arglist
     input_file <- output_file <- NULL
   }
   # return files to tempdir
