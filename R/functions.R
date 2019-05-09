@@ -1,4 +1,4 @@
-flpth_check <- function(flpth) {
+.flpth_check <- function(flpth) {
   if (!file.exists(flpth)) {
     stop('[', flpth, '] does not exist')
   }
@@ -13,21 +13,27 @@ flpth_check <- function(flpth) {
 mafft <- function(...) {
   arglist <- outsider::.arglist_get(...)
   if ('>' %in% arglist) {
-    input_file <- arglist[which(arglist == '>') - 1]
-    flpth_check(input_file)
-    output_file <- arglist[which(arglist == '>') + 1]
-    flpth_check(outsider::.dirpath_get(output_file))
+    arglist_parsed <- arglist
+    input_i <- which(arglist == '>') - 1
+    input_file <- arglist[input_i]
+    .flpth_check(input_file)
+    arglist_parsed[input_i] <- basename(input_file)
+    output_i <- which(arglist == '>') + 1
+    output_file <- arglist[output_i]
+    .flpth_check(outsider::.dirpath_get(output_file))
+    arglist_parsed[output_i] <- basename(output_file)
   } else {
+    arglist_parsed <- arglist
     input_file <- output_file <- NULL
   }
-  arglist <- outsider::.arglist_parse(arglist)
   # return files to tempdir
   tempwd <- file.path(tempdir(), 'om_mafft')
   dir.create(tempwd)
   on.exit(unlink(x = tempwd, recursive = TRUE, force = TRUE))
   # write arglist as script
   script_flpth <- file.path(tempwd, 'script')
-  write(x = paste(c('mafft', arglist), collapse = ' '), file = script_flpth)
+  write(x = paste(c('mafft', arglist_parsed), collapse = ' '),
+        file = script_flpth)
   otsdr <- outsider::.outsider_init(repo = 'dombennett/om..mafft',
                                     cmd = 'bash', wd = tempwd,
                                     files_to_send = c(input_file,
