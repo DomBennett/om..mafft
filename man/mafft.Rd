@@ -14,8 +14,6 @@ Run mafft
 }
 \examples{
 library(outsider)
-module_install(repo = 'dombennett/om..mafft', force = TRUE)
 mafft <- module_import('mafft', repo = 'dombennett/om..mafft')
 mafft('--help')
-module_uninstall(repo = 'dombennett/om..mafft')
 }
