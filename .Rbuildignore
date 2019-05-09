@@ -3,3 +3,4 @@
 ^dev\.R$
 ^examples$
 ^mafft-7.407-with-extensions-src\.tgz$
+^\.travis\.yml$
