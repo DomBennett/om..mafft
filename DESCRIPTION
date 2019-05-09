@@ -1,4 +1,4 @@
-Package: om..mafft..dombennett
+Package: om..mafft
 Type: Package
 Title: MAFFT
 Version: 0.1.0
@@ -14,4 +14,6 @@ RoxygenNote: 6.1.1
 Depends:
     R (>= 3.3.0)
 Imports:
+    outsider.base
+Suggests:
     outsider

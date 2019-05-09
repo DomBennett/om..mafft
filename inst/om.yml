@@ -1,2 +1,5 @@
 program: mafft
 details: With extensions
+docker: dombennett
+github: dombennett
+url: https://github.com/DomBennett/om..mafft
