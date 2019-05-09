@@ -1,8 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-Dockerfile
-dev.R
-examples/
-om.yml
-mafft-7.407-with-extensions-src.tgz
-
+^dev\.R$
+^examples$
+^mafft-7.407-with-extensions-src\.tgz$

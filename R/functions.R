@@ -11,7 +11,7 @@
 #' @example examples/mafft.R
 #' @export
 mafft <- function(...) {
-  arglist <- outsider::.arglist_get(...)
+  arglist <- arglist_get(...)
   if ('>' %in% arglist) {
     arglist_parsed <- arglist
     input_i <- which(arglist == '>') - 1
@@ -20,7 +20,7 @@ mafft <- function(...) {
     arglist_parsed[input_i] <- basename(input_file)
     output_i <- which(arglist == '>') + 1
     output_file <- arglist[output_i]
-    .flpth_check(outsider::.dirpath_get(output_file))
+    .flpth_check(dirpath_get(output_file))
     arglist_parsed[output_i] <- basename(output_file)
   } else {
     arglist_parsed <- arglist
@@ -34,17 +34,16 @@ mafft <- function(...) {
   script_flpth <- file.path(tempwd, 'script')
   write(x = paste(c('mafft', arglist_parsed), collapse = ' '),
         file = script_flpth)
-  otsdr <- outsider::.outsider_init(repo = 'dombennett/om..mafft',
-                                    cmd = 'bash', wd = tempwd,
-                                    files_to_send = c(input_file,
-                                                      script_flpth),
-                                    arglist = 'script')
+  otsdr <- outsider_init(pkgnm = 'om..mafft', cmd = 'bash',
+                         wd = tempwd, files_to_send = c(input_file,
+                                                        script_flpth),
+                         arglist = 'script')
   if ('--help' %in% arglist) {
     # mafft raises an error for --help
     otsdr$ignore_errors <- TRUE
-    res <- outsider::.run(otsdr)
+    res <- run(otsdr)
   } else {
-    res <- outsider::.run(otsdr)
+    res <- run(otsdr)
     # return output file
     fls <- list.files(tempwd)
     returned_file <- fls[vapply(X = fls, FUN = grepl, FUN.VALUE = logical(1),
