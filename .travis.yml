@@ -15,7 +15,8 @@ addons:
       - libapparmor-dev
   
 r_github_packages:
-  - antonellilab/outsider
+  - antonellilab/outsider:review_changes
+  - antonellilab/outsider.base
   
 # script:
 #  - Rscript -e 'outsider::.module_test(repo = "DomBennett/om..mafft")'
