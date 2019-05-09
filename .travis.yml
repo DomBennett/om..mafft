@@ -15,7 +15,7 @@ addons:
       - libapparmor-dev
   
 r_github_packages:
-  - antonellilab/outsider:review_changes
+  - antonellilab/outsider@review_changes
   - antonellilab/outsider.base
   
 # script:
