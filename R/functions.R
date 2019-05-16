@@ -10,8 +10,8 @@
 #' @param ... Arguments
 #' @example examples/mafft.R
 #' @export
-mafft <- function(...) {
-  arglist <- arglist_get(...)
+# TODO: swtich arglist to args?
+mafft <- function(arglist = arglist_get(...)) {
   if ('>' %in% arglist) {
     arglist_parsed <- arglist
     input_i <- which(arglist == '>') - 1
