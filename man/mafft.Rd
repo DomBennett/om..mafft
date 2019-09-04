@@ -4,10 +4,10 @@
 \alias{mafft}
 \title{mafft}
 \usage{
-mafft(...)
+mafft(arglist = arglist_get(...))
 }
 \arguments{
-\item{...}{Arguments}
+\item{arglist}{Arguments as character vector passed to mafft}
 }
 \description{
 Run mafft

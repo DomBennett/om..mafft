@@ -7,7 +7,7 @@
 #' @name mafft
 #' @title mafft
 #' @description Run mafft
-#' @param ... Arguments
+#' @param arglist Arguments as character vector passed to mafft
 #' @example examples/mafft.R
 #' @export
 # TODO: swtich arglist to args?
