@@ -22,6 +22,9 @@ mafft <- function(arglist = arglist_get(...)) {
     output_file <- arglist[output_i]
     .flpth_check(dirpath_get(output_file))
     arglist_parsed[output_i] <- basename(output_file)
+    if (arglist_parsed[output_i] == arglist_parsed[input_i]) {
+      stop('Input and output file names must be different', call. = FALSE)
+    }
   } else {
     arglist_parsed <- arglist
     input_file <- output_file <- NULL
@@ -47,9 +50,8 @@ mafft <- function(arglist = arglist_get(...)) {
     # return output file
     fls <- list.files(tempwd)
     returned_file <- fls[vapply(X = fls, FUN = grepl, FUN.VALUE = logical(1),
-                              x = output_file)]
-    file.copy(from = file.path(tempwd, returned_file), to = output_file,
-              recursive = TRUE)
+                                x = output_file)]
+    file.copy(from = file.path(tempwd, returned_file), to = output_file)
   }
   invisible(res)
 }
