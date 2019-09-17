@@ -1,5 +1,5 @@
 .flpth_check <- function(flpth) {
-  if (!file.exists(flpth)) {
+  if (!any(c(file.exists(flpth), dir.exists(flpth)))) {
     stop('[', flpth, '] does not exist')
   }
 }
