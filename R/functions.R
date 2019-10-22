@@ -34,10 +34,11 @@ mafft <- function(arglist = arglist_get(...)) {
   dir.create(tempwd)
   on.exit(unlink(x = tempwd, recursive = TRUE, force = TRUE))
   # write arglist as script
-  script_flpth <- file(file.path(tempwd, 'script'), 'wb')
+  script_flpth <- file.path(tempwd, 'script')
+  script_cnntn <- file(script_flpth, 'wb')
   write(x = paste(c('mafft', arglist_parsed), collapse = ' '),
-        file = script_flpth)
-  close(script_flpth)
+        file = script_cnntn)
+  close(script_cnntn)
   otsdr <- outsider_init(pkgnm = 'om..mafft', cmd = 'bash',
                          wd = tempwd, files_to_send = c(input_file,
                                                         script_flpth),
