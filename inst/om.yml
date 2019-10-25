@@ -1,5 +1,5 @@
 program: mafft
-details: With extensions
+details: Multiple alignment program for amino acid or nucleotide sequences
 docker: dombennett
 github: dombennett
 url: https://github.com/DomBennett/om..mafft
