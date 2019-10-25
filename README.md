@@ -1,4 +1,4 @@
-# Run `mafft` through `outsider` in R
+# Run [`mafft`](https://mafft.cbrc.jp/alignment/software/) through `outsider` in R
 [![Build Status](https://travis-ci.org/DomBennett/om..mafft.svg?branch=master)](https://travis-ci.org/DomBennett/om..mafft)
 
 ```r
