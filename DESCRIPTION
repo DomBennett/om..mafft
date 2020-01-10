@@ -10,10 +10,9 @@ Description: Install and run mafft in R.
 License: MIT + file LICENSE
 Encoding: UTF-8
 BugReports: https://github.com/dombennett/om..mafft/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Depends:
     R (>= 3.3.0)
 Imports:
     outsider.base,
     outsider
-    

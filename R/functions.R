@@ -10,24 +10,24 @@
 #' @param arglist Arguments as character vector passed to mafft
 #' @example examples/mafft.R
 #' @export
-# TODO: swtich arglist to args?
 mafft <- function(arglist = arglist_get(...)) {
   if ('>' %in% arglist) {
-    arglist_parsed <- arglist
-    input_i <- which(arglist == '>') - 1
-    input_file <- arglist[input_i]
-    .flpth_check(input_file)
-    arglist_parsed[input_i] <- basename(input_file)
-    output_i <- which(arglist == '>') + 1
-    output_file <- arglist[output_i]
-    .flpth_check(dirpath_get(output_file))
-    arglist_parsed[output_i] <- basename(output_file)
-    if (arglist_parsed[output_i] == arglist_parsed[input_i]) {
-      stop('Input and output file names must be different', call. = FALSE)
+    mt_pos <- which(arglist == '>')
+    if (mt_pos != (length(arglist) - 1)) {
+      stop('Argument order must be: c("--option", input, ">", output)',
+           call. = FALSE)
     }
+    output_file <- arglist[length(arglist)]
+    input_file <- arglist[mt_pos - 1]
+    .flpth_check(input_file)
+    .flpth_check(dirpath_get(output_file))
+    files_to_send <- filestosend_get(arglist = arglist)
+    arglist_parsed <- arglist_parse(arglist = arglist)
+    arglist_parsed[length(arglist_parsed)] <-
+      basename(arglist_parsed[length(arglist_parsed)])
   } else {
     arglist_parsed <- arglist
-    input_file <- output_file <- NULL
+    files_to_send <- output_file <- NULL
   }
   # return files to tempdir
   tempwd <- file.path(tempdir(), 'om_mafft')
@@ -40,7 +40,7 @@ mafft <- function(arglist = arglist_get(...)) {
         file = script_cnntn)
   close(script_cnntn)
   otsdr <- outsider_init(pkgnm = 'om..mafft', cmd = 'bash',
-                         wd = tempwd, files_to_send = c(input_file,
+                         wd = tempwd, files_to_send = c(files_to_send,
                                                         script_flpth),
                          arglist = 'script')
   if ('--help' %in% arglist) {
@@ -51,8 +51,8 @@ mafft <- function(arglist = arglist_get(...)) {
     res <- run(otsdr)
     # return output file
     fls <- list.files(tempwd)
-    returned_file <- fls[vapply(X = fls, FUN = grepl, FUN.VALUE = logical(1),
-                                x = output_file)]
+    returned_files <- vapply(X = fls, FUN = basename, FUN.VALUE = character(1))
+    returned_file <- returned_files[returned_files == basename(output_file)]
     file.copy(from = file.path(tempwd, returned_file), to = output_file)
   }
   invisible(res)

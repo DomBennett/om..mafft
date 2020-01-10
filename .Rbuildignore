@@ -2,5 +2,6 @@
 ^\.Rproj\.user$
 ^dev\.R$
 ^examples$
+^test_data$
 ^mafft-7.407-with-extensions-src\.tgz$
 ^\.travis\.yml$
