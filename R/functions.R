@@ -5,8 +5,8 @@
 }
 
 #' @name mafft
-#' @title mafft
-#' @description Run mafft
+#' @title Multiple Alignment through Fast Fourier Transformation
+#' @description Run the muleiple alignment program mafft.
 #' @param arglist Arguments as character vector passed to mafft
 #' @example examples/mafft.R
 #' @export

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{mafft}
 \alias{mafft}
-\title{mafft}
+\title{Multiple Alignment through Fast Fourier Transformation}
 \usage{
 mafft(arglist = arglist_get(...))
 }
@@ -10,7 +10,7 @@ mafft(arglist = arglist_get(...))
 \item{arglist}{Arguments as character vector passed to mafft}
 }
 \description{
-Run mafft
+Run the muleiple alignment program mafft.
 }
 \examples{
 library(outsider)
